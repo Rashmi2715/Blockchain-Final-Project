@@ -24,7 +24,7 @@ if not w3.is_connected():
     raise Exception("Web3 is not connected to Ganache")
 
 # Your smart contract address deployed from Remix/Ganache
-contract_address = Web3.to_checksum_address("0x99289B09Cc1d9a760F472261676838e4B98A23BA")
+contract_address = Web3.to_checksum_address("0xcAaB5591d50b31A1384f356dfCCC02908C177980")
 
 # Load ABI (replace with your actual ABI file path)
 with open("certificate_abi.json") as f:
