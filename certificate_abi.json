@@ -62,6 +62,21 @@
 				"internalType": "uint256",
 				"name": "dateIssued",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "experienceYears",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "joiningYear",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "completingYear",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -106,6 +121,21 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
@@ -166,6 +196,16 @@
 				"internalType": "string",
 				"name": "_performance",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_joiningYear",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_completingYear",
+				"type": "uint256"
 			}
 		],
 		"name": "issueCertificate",

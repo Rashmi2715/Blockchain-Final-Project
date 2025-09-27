@@ -14,7 +14,7 @@ body {
 
 /* Center the content */
 .container {
-    max-width: 900px;
+    max-width: 2000px;
     margin-top: 40px;  /* Ensure the content doesn't touch the top edge */
     padding: 20px;
     background-color: #fff;

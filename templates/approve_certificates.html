@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Certificates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view2.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.js"></script>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                $(document).ready(function() {
+                    Swal.fire({
+                        title: "Notification",
+                        text: "{{ messages[0] }}",
+                        icon: "info",
+                        confirmButtonText: "OK"
+                    });
+                });
+            </script>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Pending Job Applications</h2>
+
+    {% if enrollments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Applicant</th>
+                    <th>Email</th>
+                    <th>Certificate Info</th>
+                    <th>Resume</th>
+                    <th>Applied On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enroll in enrollments %}
+                <tr>
+                    <td>{{ enroll['job_title'] }}</td>
+                    <td>{{ enroll['employee_name'] }}</td>
+                    <td>{{ enroll['email'] }}</td>
+                    <td>
+                        {% if enroll['certificate_id'] %}
+                            <details>
+                                <summary>{{ enroll['certificate_id'] }}</summary>
+                                <ul>
+                                    <li><strong>Employee Name:</strong> {{ enroll['certificate_details']['employee_name'] }}</li>
+                                    <li><strong>Employee ID:</strong> {{ enroll['certificate_details']['employee_id'] }}</li>
+                                    <li><strong>Company:</strong> {{ enroll['certificate_details']['company_name'] }}</li>
+                                    <li><strong>Role:</strong> {{ enroll['certificate_details']['job_role'] }}</li>
+                                    <li><strong>Skills:</strong> {{ enroll['certificate_details']['skills'] }}</li>
+                                    <li><strong>Performance:</strong> {{ enroll['certificate_details']['performance'] }}</li>
+                                    <li><strong>Joining Year:</strong> {{ enroll['certificate_details']['joining_year'] }}</li>
+                                    <li><strong>Completing Year:</strong> {{ enroll['certificate_details']['completing_year'] }}</li>
+                                    <li><strong>Experience (Years):</strong> {{ enroll['certificate_details']['experience_years'] }}</li>
+                                    <li><strong>Date Issued:</strong> {{ enroll['certificate_details']['date_issued'] | datetimeformat('%B %d, %Y %I:%M %p') }}</li>
+                                </ul>
+                            </details>
+                        {% else %}
+                            No certificate
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if enroll['resume_path'] %}
+                            <a href="{{ url_for('static', filename='uploads/' + enroll['resume_path']) }}" target="_blank" class="view-resume-btn">View Resume</a>
+                        {% else %}
+                            No resume
+                        {% endif %}
+                    </td>
+                    <td>{{ enroll['enrolled_at'].strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('update_enrollment_status') }}" style="display: inline;">
+                            <input type="hidden" name="enrollment_id" value="{{ enroll['id'] }}">
+                            <input type="hidden" name="status" value="approved">
+                            <button type="submit" class="btn-appr">Approve</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('update_enrollment_status') }}" style="display: inline; margin-top: 5px;">
+                            <input type="hidden" name="enrollment_id" value="{{ enroll['id'] }}">
+                            <input type="hidden" name="status" value="rejected">
+                            <button type="submit" class="btn-rej">Reject</button>
+                            <input type="text" name="message" class="reject-text-area" placeholder="Rejection reason" required>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No pending applications found.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('hr_dashboard') }}" class="button">Back to Dashboard</a>
+</body>
+</html>

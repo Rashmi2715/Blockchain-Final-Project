@@ -1,4 +1,3 @@
-<!-- hr_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,43 +25,51 @@
             </script>
         {% endif %}
     {% endwith %}
-    <div class="container">
-    <h2>Issued Certificates</h2>
 
-    {% if certificates %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Certificate ID</th>
-                    <th>Employee Name</th>
-                    <th>Employee ID</th>
-                    <th>Company</th>
-                    <th>Job Role</th>
-                    <th>Skills</th>
-                    <th>Performance</th>
-                    <th>Issue Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cert in certificates %}
+    <div class="container">
+        <h2>Issued Certificates</h2>
+
+        {% if certificates %}
+            <table>
+                <thead>
                     <tr>
-                        <td>{{ cert.cert_id }}</td>
-                        <td>{{ cert.employee_name }}</td>
-                        <td>{{ cert.employee_id }}</td>
-                        <td>{{ cert.company_name }}</td>
-                        <td>{{ cert.job_role }}</td>
-                        <td>{{ cert.skills }}</td>
-                        <td>{{ cert.performance }}</td>
-                        <td>{{ cert.issue_date }}</td>
+                        <th>Certificate ID</th>
+                        <th>Employee Name</th>
+                        <th>Employee ID</th>
+                        <th>Company Name</th>
+                        <th>Job Role</th>
+                        <th>Skills</th>
+                        <th>Performance</th>
+                        <th>Issue Date</th>
+                        <th>Joining Year</th>
+                        <th>Completing Year</th>
+                        <th>Experience Years</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No certificates found for your company.</p>
-    {% endif %}
+                </thead>
+                <tbody>
+                    {% for cert in certificates %}
+                        <tr>
+                            <td>{{ cert.cert_id }}</td>
+                            <td>{{ cert.employee_name }}</td>
+                            <td>{{ cert.employee_id }}</td>
+                            <td>{{ cert.company_name }}</td>
+                            <td>{{ cert.job_role }}</td>
+                            <td>{{ cert.skills }}</td>
+                            <td>{{ cert.performance }}</td>
+                            <td>{{ cert.issue_date }}</td>
+                            <td>{{ cert.joining_year }}</td>
+                            <td>{{ cert.completing_year }}</td>
+                            <td>{{ cert.experience_years }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No certificates found for your company.</p>
+        {% endif %}
     </div>
+
     <br>
-        <a href="{{ url_for('hr_dashboard') }}" class="button">⬅ Back to Dashboard</a>
+    <a href="{{ url_for('hr_dashboard') }}" class="button">⬅ Back to Dashboard</a>
 </body>
 </html>

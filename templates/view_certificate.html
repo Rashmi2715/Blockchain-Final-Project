@@ -11,29 +11,38 @@
 <body>
     <h1>Your Certificates</h1>
     <div class="container">
-        
         {% if certificates %}
             <table>
-                <tr>
-                    <th>Certificate ID</th>
-                    <th>Employee Name</th>
-                    <th>Company Name</th>
-                    <th>Job Role</th>
-                    <th>Skills</th>
-                    <th>Performance</th>
-                    <th>Issued On</th>
-                </tr>
-                {% for cert in certificates %}
-                <tr>
-                    <td>{{ cert.cert_id }}</td>
-                    <td>{{ cert.employee_name }}</td>
-                    <td>{{ cert.company_name }}</td>
-                    <td>{{ cert.job_role }}</td>
-                    <td>{{ cert.skills }}</td>
-                    <td>{{ cert.performance }}</td>
-                    <td>{{ cert.issue_date }}</td>
-                </tr>
-                {% endfor %}
+                <thead>
+                    <tr>
+                        <th>Certificate ID</th>
+                        <th>Employee Name</th>
+                        <th>Company Name</th>
+                        <th>Job Role</th>
+                        <th>Skills</th>
+                        <th>Performance</th>
+                        <th>Issued On</th>
+                        <th>Joining Year</th>
+                        <th>Completing Year</th>
+                        <th>Experience Years</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cert in certificates %}
+                    <tr>
+                        <td>{{ cert.cert_id }}</td>
+                        <td>{{ cert.employee_name }}</td>
+                        <td>{{ cert.company_name }}</td>
+                        <td>{{ cert.job_role }}</td>
+                        <td>{{ cert.skills }}</td>
+                        <td>{{ cert.performance }}</td>
+                        <td>{{ cert.issue_date }}</td>
+                        <td>{{ cert.joining_year }}</td>
+                        <td>{{ cert.completing_year }}</td>
+                        <td>{{ cert.experience_years }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         {% else %}
             <p class="no-certificates">No certificates found.</p>

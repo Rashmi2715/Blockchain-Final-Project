@@ -10,6 +10,9 @@ contract CertificateNFT {
         string skills;
         string performance;
         uint256 dateIssued;
+        uint256 experienceYears; // Calculated based on joining and completing years
+        uint256 joiningYear; // Year the employee joined
+        uint256 completingYear; // Year the employee completed or finished the role
     }
 
     Certificate[] public certificates;
@@ -26,8 +29,13 @@ contract CertificateNFT {
         string memory _companyName,
         string memory _jobRole,
         string memory _skills,
-        string memory _performance
+        string memory _performance,
+        uint256 _joiningYear,  // Joining year of the employee
+        uint256 _completingYear // Completing year of the employee
     ) public returns (uint256) {
+        // Calculate experience years as the difference between completingYear and joiningYear
+        uint256 experienceYears = _completingYear - _joiningYear;
+
         Certificate memory newCert = Certificate(
             _employeeName,
             _employeeId,
@@ -35,7 +43,10 @@ contract CertificateNFT {
             _jobRole,
             _skills,
             _performance,
-            block.timestamp
+            block.timestamp,
+            experienceYears, // Store the calculated experience years
+            _joiningYear,
+            _completingYear
         );
         certificates.push(newCert);
         uint256 certId = certificates.length - 1;
@@ -47,7 +58,7 @@ contract CertificateNFT {
 
     // Get certificate details by ID
     function getCertificate(uint256 id) public view returns (
-        string memory, string memory, string memory, string memory, string memory,string memory, uint256
+        string memory, string memory, string memory, string memory, string memory, string memory, uint256, uint256, uint256, uint256
     ) {
         Certificate memory cert = certificates[id];
         return (
@@ -57,7 +68,10 @@ contract CertificateNFT {
             cert.jobRole,
             cert.skills,
             cert.performance,
-            cert.dateIssued
+            cert.dateIssued,
+            cert.experienceYears, // Return the calculated experience years
+            cert.joiningYear, // Return the joining year
+            cert.completingYear // Return the completing year
         );
     }
 
