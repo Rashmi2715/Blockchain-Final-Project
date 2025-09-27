@@ -48,4 +48,6 @@ To set up the project locally:
    ```bash
    git clone https://github.com/praptiarali22/Blockchain-Based-Skill-Work-Experience-Verification-System.git
 
+## 🎥 Demo Video
+Watch the project demo here: [Demo Video](https://drive.google.com/file/d/1wCG3ObB1BoSuFRQBkBAV6Qw_5LLVPiOj/view?usp=sharing)
 
