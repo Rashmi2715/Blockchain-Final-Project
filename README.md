@@ -1,7 +1,7 @@
 # 🌟 Blockchain-Based Skill & Work Experience Verification System 🌟
 
 ## 🚀 Overview
-This project is a **Blockchain-Based Skill and Work Experience Verification System** designed to securely validate individuals' skills and work experience. By leveraging blockchain technology, we ensure transparency, immutability, and trust in the verification process.
+This project is a **Blockchain-Based Skill and Work Experience Certification System** designed to securely validate individuals' skills and work experience. By leveraging blockchain technology, we ensure transparency, immutability, and trust in the verification process.
 
 ## ✨ Features
 - 🛡️ **Decentralized Platform:** Built on blockchain to prevent tampering and ensure data integrity.
